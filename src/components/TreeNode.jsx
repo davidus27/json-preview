@@ -41,6 +41,7 @@ export default function TreeNode({ node, onSelect, allExpanded }) {
         </a>
       );
     }
+    return (<>{text}</>);
   }
 
   return (
@@ -61,6 +62,7 @@ export default function TreeNode({ node, onSelect, allExpanded }) {
         {type === 'primitive' && (
           <span className="value primitive-value bg-green-100 dark:bg-green-800 px-2 py-0.5 rounded text-sm font-mono">
             {<UrlDetector text={String(value)}/>}
+            {/* {String(value)} */}
           </span>
         )}
       </div>
