@@ -1,0 +1,186 @@
+:root {
+  --bg-light: #f7f9fc;
+  --bg-dark: #242526;
+  --text-light: #1e293b;
+  --text-dark: #e2e8f0;
+  --accent: #5b21b6;
+  --accent-hover: #4c1d95;
+  --border-light: #d1d5db;
+  --border-dark: #3f3f46;
+  --highlight: #fde68a;
+}
+
+/* Global Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  height: 100%;
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bg-light);
+  color: var(--text-light);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.dark html, .dark body {
+  background-color: var(--bg-dark);
+  color: var(--text-dark);
+}
+
+/* Sticky Headers */
+/* .sticky {
+  position: sticky;
+} */
+
+/* Ensure sticky actually sticks */
+.sticky {
+  position: sticky;
+  top: 0; /* Required */
+  z-index: 10; /* Ensures it's above scroll content */
+  background-color: var(--bg-light); /* Prevents "transparent gaps" */
+}
+
+.dark .sticky {
+  background-color: var(--bg-dark);
+}
+
+/* Button Styles */
+button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1rem;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 0.375rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  transition: background 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
+}
+
+button:hover {
+  background: var(--accent-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+button:disabled {
+  background: var(--border-light);
+  color: #9ca3af;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* Input Styles */
+input[type="text"], input[type="file"] {
+  width: 100%;
+  padding: 0.5rem;
+  background: #fff;
+  border: 1px solid var(--border-light);
+  border-radius: 0.375rem;
+  font-size: 0.95rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+input[type="text"]:focus {
+  outline: none;
+  border-color: var(--accent-hover);
+  box-shadow: 0 0 0 3px rgba(91,33,182,0.2);
+}
+
+/* Drag & Drop Area */
+.p-10.border-4.border-dashed {
+  border: 2px dashed var(--accent);
+  border-radius: 0.5rem;
+  background-color: rgba(91,33,182,0.05);
+  text-align: center;
+  transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.p-10.border-4.border-dashed:hover {
+  background-color: rgba(91,33,182,0.1);
+  transform: translateY(-2px);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+/* Tree & TreeNode Styles */
+.p-2 { padding: 0.5rem; }
+
+.font-mono {
+  font-family: 'Source Code Pro', monospace;
+}
+
+/* Inspector Panel */
+.inspector-panel h3 {
+  color: var(--accent-hover);
+  font-size: 1.2rem;
+  margin-bottom: 0.75rem;
+}
+
+.inspector-panel div {
+  margin-bottom: 0.5rem;
+}
+
+.inspector-panel button {
+  border: 1px solid var(--border-light);
+  border-radius: 0.375rem;
+  padding: 0.25rem 0.5rem;
+}
+
+/* Breadcrumbs */
+.breadcrumbs span {
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.breadcrumbs .underline:hover {
+  text-decoration-color: var(--accent-hover);
+}
+
+/* Theme Toggle */
+.theme-toggle button {
+  background: var(--accent-hover);
+  padding: 0.4rem 0.8rem;
+  font-size: 0.9rem;
+}
+
+/* Key/Value Styling */
+.key {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.value {
+  color: #047857;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--border-light);
+  border-radius: 4px;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background-color: var(--border-dark);
+}
