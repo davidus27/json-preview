@@ -19,29 +19,44 @@ export default function App() {
 
   const toggleAll = () => setAllExpanded(exp => !exp);
 
+  const WelcomeMessage = () => {
+    return (
+      <div className="text-center mb-8">
+        <h1 className="text-4xl sm:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 animate-gradient">
+          JSON Preview
+        </h1>
+        <p className="mt-2 text-lg text-gray-500">
+          For easy JSON search and visualization
+        </p>
+      </div>
+    );
+  };
+
   if (!jsonData) {
     return (
       <div className="min-h-screen flex items-center justify-center">
+        <WelcomeMessage />
         <DragDropArea onDataLoaded={onDataLoaded} />
       </div>
     );
   }
 
   return (
-    <div className="flex h-screen">
+    <div className="app-container">
       {/* Left panel with sticky search */}
-      <div className="w-1/4 border-r flex flex-col">
-        <div className="sticky top-0 bg-white dark:bg-gray-800 z-10">
+      <div className="left-panel">
+        <div className="left-panel-header">
           <SearchBar filter={filter} setFilter={setFilter} />
-          <button onClick={toggleAll}>
+          <button className="toggle-button" onClick={toggleAll}>
             {allExpanded ? 'Collapse All' : 'Expand All'}
           </button>
-          <Breadcrumbs path={selectedPath} onSelect={setSelectedPath} />
-          <InspectorPanel data={jsonData} path={selectedPath} />
+          <div className="flex flex-col gap-2">
+            <Breadcrumbs path={selectedPath} onSelect={setSelectedPath} />
+            <InspectorPanel data={jsonData} path={selectedPath} />
+          </div>
         </div>
-        <div className="flex-1 overflow-auto">
-          <TreeRenderer data={jsonData} filter={filter} onSelect={setSelectedPath} allExpanded={allExpanded} />
-        </div>
+        <div className="tree-container"></div>
+        <TreeRenderer data={jsonData} filter={filter} onSelect={setSelectedPath} allExpanded={allExpanded} />
       </div>
     </div>
   );
