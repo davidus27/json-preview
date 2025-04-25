@@ -12,7 +12,7 @@ export default function TreeRenderer({ data, filter, onSelect, allExpanded }) {
           key={node.path.join('.') || 'root'}
           node={node}
           onSelect={onSelect}
-          forceExpand={allExpanded}
+          allExpanded={allExpanded}
         />
       ))}
     </div>
