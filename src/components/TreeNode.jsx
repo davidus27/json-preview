@@ -26,8 +26,8 @@ export default function TreeNode({ node, onSelect, allExpanded }) {
 
   function isValidUrl(str) {
     try {
-      new URL(str);
-      return true;
+      const url = new URL(str);
+      return ["http:", "https:", "file:"].includes(url.protocol);
     } catch (_) {
       return false;
     }
