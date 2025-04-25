@@ -4,18 +4,30 @@ import SearchBar from './components/SearchBar';
 import TreeRenderer from './components/TreeRenderer';
 import InspectorPanel from './components/InspectorPanel';
 import Breadcrumbs from './components/Breadcrumbs';
+import Toast from './components/Toast';
 
 export default function App() {
   const [jsonData, setJsonData] = useState(null);
   const [selectedPath, setSelectedPath] = useState([]);
   const [filter, setFilter] = useState('');
   const [allExpanded, setAllExpanded] = useState(false);
+  const [toastMessage, setToastMessage] = useState(null);
 
   const onDataLoaded = useCallback(data => {
     setJsonData(data);
     setSelectedPath([]);
     setAllExpanded(false);
   }, []);
+
+  const showToast = message => {
+    setToastMessage(message);
+  };
+
+  const handleToastClose = () => {
+    setToastMessage(null);
+  };
+
+
 
   const toggleAll = () => setAllExpanded(exp => !exp);
 
@@ -43,7 +55,9 @@ export default function App() {
 
   return (
     <div className="app-container">
-      {/* Left panel with sticky search */}
+      {toastMessage && (
+        <Toast message={toastMessage} onClose={handleToastClose} />
+      )}
       <div className="left-panel">
         <div className="left-panel-header">
           <SearchBar filter={filter} setFilter={setFilter} />
@@ -52,7 +66,7 @@ export default function App() {
           </button>
           <div className="flex flex-col gap-2">
             <Breadcrumbs path={selectedPath} onSelect={setSelectedPath} />
-            <InspectorPanel data={jsonData} path={selectedPath} />
+            <InspectorPanel data={jsonData} path={selectedPath} showToast={showToast} />
           </div>
         </div>
         <div className="tree-container"></div>
