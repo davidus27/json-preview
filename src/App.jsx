@@ -1,10 +1,11 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useMemo, useEffect } from 'react';
 import DragDropArea from './components/DragDropArea';
 import SearchBar from './components/SearchBar';
 import TreeRenderer from './components/TreeRenderer';
 import InspectorPanel from './components/InspectorPanel';
 import Breadcrumbs from './components/Breadcrumbs';
 import Toast from './components/Toast';
+import workerService from './services/WorkerService';
 
 export default function App() {
   const [jsonData, setJsonData] = useState(null);
@@ -12,6 +13,15 @@ export default function App() {
   const [filter, setFilter] = useState('');
   const [allExpanded, setAllExpanded] = useState(false);
   const [toastMessage, setToastMessage] = useState(null);
+  const stableSelectedPath = useMemo(() => selectedPath, [selectedPath.join('.')]); // eslint-disable-line react-hooks/exhaustive-deps
+
+
+  // Clean up workers when app unmounts
+  useEffect(() => {
+    return () => {
+      workerService.terminate();
+    };
+  }, []);
 
   const onDataLoaded = useCallback(data => {
     setJsonData(data);
@@ -26,8 +36,6 @@ export default function App() {
   const handleToastClose = () => {
     setToastMessage(null);
   };
-
-
 
   const toggleAll = () => setAllExpanded(exp => !exp);
 
@@ -64,13 +72,22 @@ export default function App() {
           <button className="toggle-button" onClick={toggleAll}>
             {allExpanded ? 'Collapse All' : 'Expand All'}
           </button>
-          <div className="flex flex-col gap-2">
-            <Breadcrumbs path={selectedPath} onSelect={setSelectedPath} />
-            <InspectorPanel data={jsonData} path={selectedPath} showToast={showToast} />
+          <div className="flex flex-col gap-2 min-h-[150px]">
+            <Breadcrumbs path={stableSelectedPath} onSelect={setSelectedPath} />
+            <InspectorPanel
+              data={jsonData}
+              path={stableSelectedPath}
+              showToast={showToast}
+            />
           </div>
         </div>
         <div className="tree-container"></div>
-        <TreeRenderer data={jsonData} filter={filter} onSelect={setSelectedPath} allExpanded={allExpanded} />
+        <TreeRenderer
+          data={jsonData}
+          filter={filter}
+          onSelect={setSelectedPath}
+          allExpanded={allExpanded}
+        />
       </div>
     </div>
   );
