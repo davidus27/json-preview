@@ -275,3 +275,30 @@ input[type="file"] + label {
 .dark ::-webkit-scrollbar-thumb {
   background-color: var(--border-dark);
 }
+
+
+.select-text {
+  user-select: text;
+}
+.selectable-text {
+  user-select: text;
+}
+
+/* Copy button styles - add at the end of your file */
+.copy-button {
+  transition: opacity 0.2s ease, background-color 0.2s ease;
+  position: absolute;
+  z-index: 10;
+}
+
+.value.primitive-value {
+  position: relative;
+  transition: background-color 0.2s ease;
+}
+
+/* Ensure layout stability by reserving space */
+.value-container {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
