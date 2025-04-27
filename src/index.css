@@ -224,6 +224,53 @@ input[type="file"] + label {
   opacity: 0.7;
 }
 
+/* Inspector Panel - Modern & Compact */
+.inspector-panel-compact {
+  display: inline-flex;
+  align-items: center;
+  transition: all 0.2s ease;
+  max-width: 300px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+  border: 1px solid var(--border-light);
+}
+
+.dark .inspector-panel-compact {
+  border-color: var(--border-dark);
+}
+
+.inspector-panel-compact button {
+  padding: 0;
+  background: transparent;
+  box-shadow: none;
+  color: inherit;
+}
+
+.inspector-panel-compact button:hover {
+  background: rgba(0,0,0,0.1);
+  transform: none;
+  box-shadow: none;
+}
+
+/* Inspector Tag - Simplified Modern Style */
+.inspector-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.5rem;
+  background: #f3f4f6;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  white-space: nowrap;
+  max-width: 300px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+
+.dark .inspector-tag {
+  background: #374151;
+  color: #e5e7eb;
+}
+
 /* Breadcrumbs */
 .breadcrumbs span {
   cursor: pointer;
@@ -232,6 +279,20 @@ input[type="file"] + label {
 
 .breadcrumbs .underline:hover {
   text-decoration-color: var(--accent-hover);
+}
+
+/* Make the breadcrumbs more compact */
+.breadcrumbs {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+}
+
+.breadcrumbs span {
+  font-size: 0.85rem;
 }
 
 /* Smooth transitions for all content changes */
@@ -246,6 +307,13 @@ input[type="file"] + label {
   background: var(--accent-hover);
   padding: 0.4rem 0.8rem;
   font-size: 0.9rem;
+}
+
+/* Update toggle button to match the compact style */
+.toggle-button {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.85rem;
+  white-space: nowrap;
 }
 
 /* Key/Value Styling */
@@ -349,4 +417,48 @@ input[type="file"] + label {
   15% { opacity: 1; transform: translateX(-50%) translateY(0); }
   85% { opacity: 1; transform: translateX(-50%) translateY(0); }
   100% { opacity: 0; transform: translateX(-50%) translateY(-20px); }
+}
+
+/* Ensure controls appear in a single line */
+.single-line-controls {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  overflow: hidden;
+}
+
+/* Update breadcrumbs to work better in a single line */
+.breadcrumbs {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Make sure inspector tag works in a single line context */
+.inspector-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.5rem;
+  background: #f3f4f6;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+  flex-shrink: 0;
+}
+
+.dark .inspector-tag {
+  background: #374151;
+  color: #e5e7eb;
+}
+
+/* Ensure toggle button stays compact */
+.toggle-button {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.85rem;
+  white-space: nowrap;
 }

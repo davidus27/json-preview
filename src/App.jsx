@@ -16,7 +16,6 @@ export default function App() {
   const [toastMessage, setToastMessage] = useState(null);
   const stableSelectedPath = useMemo(() => selectedPath, [selectedPath.join('.')]); // eslint-disable-line react-hooks/exhaustive-deps
 
-
   // Clean up workers when app unmounts
   useEffect(() => {
     return () => {
@@ -30,7 +29,7 @@ export default function App() {
     setAllExpanded(false);
   }, []);
 
-  const showToast = message => {
+  const showToastMessage = message => {
     setToastMessage(message);
   };
 
@@ -68,27 +67,32 @@ export default function App() {
         <Toast message={toastMessage} onClose={handleToastClose} />
       )}
       <div className="left-panel">
-        <div className="left-panel-header">
+        <div className="left-panel-header sticky top-0 z-20 bg-inherit shadow-sm pb-2">
           <SearchBar filter={filter} setFilter={setFilter} />
-          <button className="toggle-button" onClick={toggleAll}>
-            {allExpanded ? 'Collapse All' : 'Expand All'}
-          </button>
-          <div className="flex flex-col gap-2 min-h-[150px]">
-            <Breadcrumbs path={stableSelectedPath} onSelect={setSelectedPath} />
+          
+          <div className="flex items-center space-x-2 w-full mt-2 single-line-controls">
+            <button className="toggle-button flex-shrink-0" onClick={toggleAll}>
+              {allExpanded ? 'Collapse All' : 'Expand All'}
+            </button>
+            
+            <Breadcrumbs path={stableSelectedPath} onSelect={setSelectedPath} className="flex-grow" />
+            
             <InspectorPanel
               data={jsonData}
               path={stableSelectedPath}
-              showToast={showToast}
+              showToast={showToastMessage}
             />
           </div>
         </div>
-        <div className="tree-container"></div>
-        <TreeRenderer
-          data={jsonData}
-          filter={filter}
-          onSelect={setSelectedPath}
-          allExpanded={allExpanded}
-        />
+        
+        <div className="tree-container pt-2">
+          <TreeRenderer
+            data={jsonData}
+            filter={filter}
+            onSelect={setSelectedPath}
+            allExpanded={allExpanded}
+          />
+        </div>
       </div>
       <ToastContainer />
     </div>
