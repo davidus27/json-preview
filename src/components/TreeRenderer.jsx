@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
-import TreeNode from './TreeNode';
+import TreeNode from './Tree/TreeNode';
 // eslint-disable-next-line import/no-webpack-loader-syntax
 import TreeFilterWorker from 'worker-loader!../services/tree-filter.worker.js';
 
