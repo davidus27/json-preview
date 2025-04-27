@@ -1,2 +1,2 @@
 onmessage=e=>{const{id:t,action:a,payload:n}=e.data;try{let r;switch(a){case"getNodeInfo":r=function(t,a){const n=function(t,a){try{return a.reduce(((e,t)=>{if(null!=e)return e[t]}),t)}catch(e){return}}(t,a);return null===n?{type:"null",value:null}:void 0===n?{type:"undefined"}:Array.isArray(n)?{type:"array",length:n.length}:"object"===typeof n?{type:"object",length:Object.keys(n).length}:{type:"primitive",value:n}}(n.data,n.path);break;case"search":case"collapseAll":case"expandAll":r={type:"not_implemented"};break;default:throw new Error(`Unknown action: ${a}`)}postMessage({id:t,result:r})}catch(r){postMessage({id:t,error:r.message})}};
-//# sourceMappingURL=262.4c99347b.chunk.js.map
+//# sourceMappingURL=75.c8b2e469.chunk.js.map
