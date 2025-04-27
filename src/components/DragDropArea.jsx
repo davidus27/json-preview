@@ -39,6 +39,10 @@ export default function DragDropArea({ onDataLoaded }) {
     }
   }, [onDataLoaded]);
 
+  const handleButtonClick = () => {
+    fileInputRef.current.click();
+  };
+
   useEffect(() => {
     const preventDefaults = e => e.preventDefault();
     window.addEventListener('dragover', preventDefaults);
@@ -50,23 +54,49 @@ export default function DragDropArea({ onDataLoaded }) {
   }, []);
 
   return (
-    <div
-      onDragEnter={handleDrag}
-      onDragOver={handleDrag}
-      onDragLeave={handleDrag}
-      onDrop={handleDrop}
-      className={`p-10 border-4 border-dashed text-center text-gray-500 ${dragActive ? 'bg-gray-200' : ''}`}
-    >
-      <input
-        ref={fileInputRef}
-        type="file"
-        accept=".json,.txt"
-        className="hidden"
-        onChange={handleChange}
-      />
-      <p>Drag & drop a JSON file here</p>
-      <p>or</p>
-      <button onClick={() => fileInputRef.current.click()}>Browse Files</button>
+    <div className="drop-container">
+      <div
+        onDragEnter={handleDrag}
+        onDragOver={handleDrag}
+        onDragLeave={handleDrag}
+        onDrop={handleDrop}
+        className={`p-10 border-4 border-dashed ${dragActive ? 'bg-gray-200' : ''}`}
+      >
+        <input
+          ref={fileInputRef}
+          type="file"
+          id="file-upload"
+          accept=".json,.txt"
+          onChange={handleChange}
+          style={{ display: 'none' }} // Completely hide the input
+        />
+        {/* <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+          fill="none" stroke="currentColor" className="w-6 h-6 text-accent mb-2">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
+            d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+        </svg> */}
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.5"
+          className="w-10 h-10 text-accent mb-4"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
+          />
+        </svg>
+        <p><strong>Drop your JSON file here</strong></p>
+        <p className="text-sm text-gray-400 mb-3">or</p>
+        <button
+          className="file-select-button"
+          onClick={handleButtonClick}>
+          Browse files
+        </button>
+      </div>
     </div>
   );
 }
