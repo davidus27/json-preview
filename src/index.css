@@ -302,3 +302,51 @@ input[type="file"] + label {
   display: inline-flex;
   align-items: center;
 }
+
+/* Toast styling */
+.toast-popup {
+  position: fixed;
+  top: 24px; /* Position at top with some margin */
+  left: 50%;
+  transform: translateX(-50%); /* Center horizontally */
+  max-width: 300px;
+  width: auto;
+  background: #10b981; /* Green background */
+  color: white;
+  padding: 12px 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  z-index: 9999; /* Ensure it's above everything */
+  pointer-events: none; /* Makes it non-interactive */
+  animation: toastFadeInOut 2s ease;
+  font-weight: 500;
+  text-align: center;
+  border-left: 4px solid #059669; /* Darker green accent */
+}
+
+/* Remove the previous transform classes as we're using a different positioning */
+.toast-popup.opacity-0 {
+  opacity: 0;
+  transform: translateX(-50%) translateY(-10px);
+}
+
+.toast-popup.opacity-100 {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* Updated animation for top center positioning */
+@keyframes toastFadeInOut {
+  0% { opacity: 0; transform: translateX(-50%) translateY(-20px); }
+  15% { opacity: 1; transform: translateX(-50%) translateY(0); }
+  85% { opacity: 1; transform: translateX(-50%) translateY(0); }
+  100% { opacity: 0; transform: translateX(-50%) translateY(-20px); }
+}
+
+/* Replace the previous fadeInOut animation */
+@keyframes fadeInOut {
+  0% { opacity: 0; transform: translateX(-50%) translateY(-20px); }
+  15% { opacity: 1; transform: translateX(-50%) translateY(0); }
+  85% { opacity: 1; transform: translateX(-50%) translateY(0); }
+  100% { opacity: 0; transform: translateX(-50%) translateY(-20px); }
+}

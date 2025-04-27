@@ -1,4 +1,5 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
+import { showToast } from '../ToastContainer';
 
 export default function CopyButton({ textToCopy, visible }) {
   const buttonRef = useRef(null);
@@ -6,6 +7,7 @@ export default function CopyButton({ textToCopy, visible }) {
   const handleCopy = (e) => {
     e.stopPropagation();
     navigator.clipboard.writeText(textToCopy);
+    showToast(`Copied ${textToCopy} to clipboard!`, 1500);
 
     if (!buttonRef.current) return;
 
@@ -19,6 +21,7 @@ export default function CopyButton({ textToCopy, visible }) {
   };
 
   return (
+
     <button
       ref={buttonRef}
       onClick={handleCopy}

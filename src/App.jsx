@@ -6,6 +6,7 @@ import InspectorPanel from './components/InspectorPanel';
 import Breadcrumbs from './components/Breadcrumbs';
 import Toast from './components/Toast';
 import workerService from './services/WorkerService';
+import ToastContainer, { showToast } from './components/ToastContainer';
 
 export default function App() {
   const [jsonData, setJsonData] = useState(null);
@@ -89,6 +90,7 @@ export default function App() {
           allExpanded={allExpanded}
         />
       </div>
+      <ToastContainer />
     </div>
   );
 }

@@ -16,8 +16,8 @@ export default function Toast({ message, duration = 2000, onClose }) {
 
   return (
     <div 
-      className={`fixed bottom-4 right-4 bg-accent text-white py-2 px-4 rounded-md shadow-lg transition-all duration-300 z-50 ${
-        visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'
+      className={`toast-popup fixed right-4 bg-accent text-white py-2 px-4 rounded-md shadow-lg transition-all duration-300 z-50 ${
+        visible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-2'
       }`}
     >
       {message}
