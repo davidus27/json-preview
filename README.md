@@ -1,8 +1,10 @@
 # JSON Preview
 
-A modern web application for visualizing, exploring, and searching JSON data with ease.
+A web application and Chromium extension for visualizing and searching large JSON objects easily.
 
-![JSON Preview](https://github.com/davidus27/json-preview/raw/main/public/logo192.png)
+![JSON Preview](./public/logo.png)
+
+You can try it out in [web](https://davidus27.github.io/json-preview/) or as an extension.
 
 ## Overview
 
@@ -24,39 +26,58 @@ JSON Preview is a React-based tool that allows users to:
 - **Web Worker Support**: Handle large JSON files without UI freezing
 - **Responsive Design**: Works smoothly across desktop and mobile devices
 
-## Installation
+## Installation for development
 
 ```bash
-# Clone the repository
 git clone https://github.com/davidus27/json-preview.git
-
-# Navigate to the project directory
 cd json-preview
-
-# Install dependencies
 npm install
-
-# Start the development server
 npm start
 ```
 
 ## Usage
 
-1. Visit the application in your browser (locally at http://localhost:3000 or online at https://davidus27.github.io/json-preview)
-2. Either drag & drop a JSON file onto the drop area or use the file selector
-3. Use the search bar to filter JSON content
-4. Click on nodes to expand/collapse them
-5. Navigate through the JSON structure using the breadcrumb trail
-6. Use the inspector panel to view details of selected nodes
+1. Either drag & drop a JSON file onto the drop area or use the file selector
+2. Use the search bar to filter JSON content
+3. Click on nodes to expand/collapse them
+4. Navigate through the JSON structure using the breadcrumb trail
+5. Use the inspector panel to view details of selected nodes
 
 ## Development
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-```bash
-# Run tests
-npm test
 
+```
+.
+├── src
+│   ├── App.jsx
+│   ├── components
+│   │   ├── Breadcrumbs.jsx
+│   │   ├── Clipboard.jsx
+│   │   ├── DragDropArea.jsx
+│   │   ├── InspectorPanel.jsx
+│   │   ├── SearchBar.jsx
+│   │   ├── ThemeToggle.jsx
+│   │   ├── Toast.jsx
+│   │   ├── Tree
+│   │   └── TreeRenderer.jsx
+│   ├── index.css
+│   ├── index.js
+│   ├── reportWebVitals.js
+│   ├── services
+│   │   ├── tree-filter.worker.js
+│   │   ├── WorkerService.js
+│   │   └── worker.js
+│   ├── setupTests.js
+│   └── utils
+│       ├── json-parser.js
+│       ├── search-utils.js
+│       ├── ui-utils.js
+├── tailwind.config.js
+```
+
+```bash
 # Create production build
 npm run build
 

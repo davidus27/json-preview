@@ -11,7 +11,7 @@ class WorkerService {
   initWorker() {
     if (this.worker) return;
     
-    this.worker = new Worker(new URL('../utils/worker.js', import.meta.url));
+    this.worker = new Worker(new URL('../services/worker.js', import.meta.url));
     
     this.worker.onmessage = (e) => {
       const { id, result, error } = e.data;
