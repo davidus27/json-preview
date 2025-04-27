@@ -1,6 +1,6 @@
 # JSON Preview
 
-A web application and chromium extension for visualizing and searching large JSON objects easily.
+A web application and Chromium extension for visualizing and searching large JSON objects easily.
 
 ![JSON Preview](./public/logo.png)
 
@@ -47,6 +47,8 @@ npm start
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+
+```
 .
 ├── src
 │   ├── App.jsx
@@ -73,7 +75,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 │       ├── search-utils.js
 │       ├── ui-utils.js
 ├── tailwind.config.js
-
+```
 
 ```bash
 # Create production build
