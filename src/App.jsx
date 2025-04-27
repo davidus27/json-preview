@@ -67,21 +67,23 @@ export default function App() {
         <Toast message={toastMessage} onClose={handleToastClose} />
       )}
       <div className="left-panel">
-        <div className="left-panel-header sticky top-0 z-20 bg-inherit shadow-sm pb-2">
-          <SearchBar filter={filter} setFilter={setFilter} />
-          
-          <div className="flex items-center space-x-2 w-full mt-2 single-line-controls">
-            <button className="toggle-button flex-shrink-0" onClick={toggleAll}>
-              {allExpanded ? 'Collapse All' : 'Expand All'}
-            </button>
+        <div className="left-panel-header sticky top-0 z-20 bg-inherit shadow-sm">
+          <div className="control-panel">
+            <SearchBar filter={filter} setFilter={setFilter} />
             
-            <Breadcrumbs path={stableSelectedPath} onSelect={setSelectedPath} className="flex-grow" />
-            
-            <InspectorPanel
-              data={jsonData}
-              path={stableSelectedPath}
-              showToast={showToastMessage}
-            />
+            <div className="menu-controls">
+              <button className="toggle-button flex-shrink-0" onClick={toggleAll}>
+                {allExpanded ? 'Collapse All' : 'Expand All'}
+              </button>
+              
+              <Breadcrumbs path={stableSelectedPath} onSelect={setSelectedPath} className="flex-grow" />
+              
+              <InspectorPanel
+                data={jsonData}
+                path={stableSelectedPath}
+                showToast={showToastMessage}
+              />
+            </div>
           </div>
         </div>
         
