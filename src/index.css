@@ -1,3 +1,19 @@
+@keyframes gradient-x {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradient-x 4s ease infinite;
+}
+
+
 :root {
   --bg-light: #f7f9fc;
   --bg-dark: #242526;
@@ -104,16 +120,73 @@ input[type="text"]:focus {
 /* Drag & Drop Area */
 .p-10.border-4.border-dashed {
   border: 2px dashed var(--accent);
-  border-radius: 0.5rem;
+  border-radius: 1rem;
   background-color: rgba(91,33,182,0.05);
   text-align: center;
-  transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  transition: all 0.3s ease;
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 2.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
 }
 
 .p-10.border-4.border-dashed:hover {
   background-color: rgba(91,33,182,0.1);
-  transform: translateY(-2px);
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  transform: translateY(-4px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  border-color: var(--accent-hover);
+}
+
+.p-10.border-4.border-dashed p {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  color: var(--accent);
+  font-weight: 500;
+}
+
+/* Hide default file input appearance */
+input[type="file"] {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+
+input[type="file"] + label {
+  cursor: pointer;
+}
+
+/* Add this to your DragDropArea component styles */
+.drop-container {
+  min-height: 400px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Custom file button */
+.file-select-button {
+  background-color: white;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  padding: 0.6rem 1.2rem;
+  font-weight: 600;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  transition: all 0.2s ease;
+}
+
+.file-select-button:hover {
+  background-color: var(--accent);
+  color: white;
 }
 
 /* Tree & TreeNode Styles */
@@ -140,6 +213,17 @@ input[type="text"]:focus {
   padding: 0.25rem 0.5rem;
 }
 
+/* Add these styles to prevent layout shift */
+.inspector-panel {
+  min-height: 120px;
+  opacity: 1;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.inspector-panel.loading {
+  opacity: 0.7;
+}
+
 /* Breadcrumbs */
 .breadcrumbs span {
   cursor: pointer;
@@ -148,6 +232,13 @@ input[type="text"]:focus {
 
 .breadcrumbs .underline:hover {
   text-decoration-color: var(--accent-hover);
+}
+
+/* Smooth transitions for all content changes */
+.breadcrumbs, 
+.inspector-panel,
+.tree-container {
+  transition: opacity 0.2s ease;
 }
 
 /* Theme Toggle */
@@ -183,4 +274,31 @@ input[type="text"]:focus {
 
 .dark ::-webkit-scrollbar-thumb {
   background-color: var(--border-dark);
+}
+
+
+.select-text {
+  user-select: text;
+}
+.selectable-text {
+  user-select: text;
+}
+
+/* Copy button styles - add at the end of your file */
+.copy-button {
+  transition: opacity 0.2s ease, background-color 0.2s ease;
+  position: absolute;
+  z-index: 10;
+}
+
+.value.primitive-value {
+  position: relative;
+  transition: background-color 0.2s ease;
+}
+
+/* Ensure layout stability by reserving space */
+.value-container {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
 }

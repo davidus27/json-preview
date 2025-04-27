@@ -1,10 +1,11 @@
 import React from 'react';
+// import { pathToString } from '../utils/ui-utils';
+
 export default function Breadcrumbs({ path, onSelect }) {
-  if (!path || path.length === 0) return <div className="font-mono">root</div>;
   return (
-    <div className="breadcrumbs font-mono">
+    <div className="breadcrumbs font-mono transition-opacity duration-200">
       <span onClick={() => onSelect([])} className="underline cursor-pointer">root</span>
-      {path.map((seg, idx) => {
+      {path && path.length > 0 && path.map((seg, idx) => {
         const isLast = idx === path.length - 1;
         const display = typeof seg === 'number' ? `[${seg}]` : seg;
         return (

@@ -39,5 +39,8 @@
       "last 1 safari version"
     ]
   },
-  "homepage": "https://davidus27.github.io/json-preview"
+  "homepage": "https://davidus27.github.io/json-preview",
+  "devDependencies": {
+    "worker-loader": "^3.0.8"
+  }
 }
