@@ -19,7 +19,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d build",
+    "test:coverage": "react-scripts test --coverage --watchAll=false"
   },
   "eslintConfig": {
     "extends": [
@@ -42,5 +43,15 @@
   "homepage": "https://davidus27.github.io/json-preview",
   "devDependencies": {
     "worker-loader": "^3.0.8"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx}",
+      "!src/index.js",
+      "!src/reportWebVitals.js"
+    ],
+    "moduleNameMapper": {
+      "^../services/WorkerService\\.mjs$": "<rootDir>/src/tests/mocks/workerServiceMock.js"
+    }
   }
 }
